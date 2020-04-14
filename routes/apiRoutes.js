@@ -39,4 +39,17 @@ app.post("/api/workouts", function ({ body }, res) {
       res.json(err);
     });
 });
+
+// api GET route for the stats page
+app.get("/api/workouts/range", (req, res) => {
+    workout
+    .find({})
+    .then(data => {
+        res.json(data);
+    })
+    .catch(err => {
+        res.status(400).json(err);
+    });
+});
+
 module.exports = app;
