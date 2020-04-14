@@ -52,4 +52,21 @@ app.get("/api/workouts/range", (req, res) => {
     });
 });
 
+// api PUT route for getting workout by id
+app.put("/api/workouts/:id", function (req, res) {
+    workout
+    .findByIdAndUpdate(
+        {_id: req.params.id},
+        {$push: { exercises: req.body } },
+        {new: true}
+    )
+    .then(data => {
+        console.log(data);
+        res.json(data);
+    })
+    .catch(err => {
+        console.log(err);
+        res.json(err);
+    });
+});
 module.exports = app;
